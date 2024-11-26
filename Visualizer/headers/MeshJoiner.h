@@ -10,7 +10,6 @@ public:
 	MeshJoiner();
 	~MeshJoiner();
 
-	Transformations::Transformation transformer;
 	std::vector<Triangulation> performTransformations(std::vector<Triangulation>& triangulations);
 
 };

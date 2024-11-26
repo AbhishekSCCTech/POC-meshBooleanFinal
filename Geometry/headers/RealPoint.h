@@ -8,7 +8,6 @@ namespace Geometry {
         double mZ;
 
     public:
-        RealPoint();
         RealPoint(double x, double y, double z);
         ~RealPoint();
 

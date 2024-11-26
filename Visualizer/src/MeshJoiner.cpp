@@ -14,6 +14,8 @@ MeshJoiner::~MeshJoiner()
 
 std::vector<Triangulation> MeshJoiner::performTransformations(std::vector<Triangulation>& triangulations)
 {
+
+    Transformations::Transformation transformer;
     Triangulation triangulationOne = triangulations[0];
     Triangulation triangulationTwo = triangulations[1];
 
