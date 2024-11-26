@@ -68,7 +68,7 @@ private:
     QOpenGLShaderProgram wireShader;
 
     QMatrix4x4 projection;
-    QMatrix4x4 modelView;
+    QMatrix4x4 modelView; 
 
     float zoomLevel = 1.0f;
     QVector3D rotation = QVector3D(0.0f, 0.0f, 0.0f);
@@ -77,7 +77,8 @@ private:
     QPoint lastMousePosition;
 
     QVector<DrawingObject> drawingObjects;
-    QMap<int, int> idToIndex;
+    QVector<int> drawingObjs;
+    int maxId;
     bool isInitialized;
 
 };

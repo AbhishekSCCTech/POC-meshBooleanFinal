@@ -19,6 +19,7 @@ std::vector<Triangulation> MeshJoiner::performTransformations(std::vector<Triang
     Triangulation triangulationOne = triangulations[0];
     Triangulation triangulationTwo = triangulations[1];
 
+    //from triangultions select first triangle
     Triangle triangle1 = triangulationOne.Triangles[0];
     Triangle triangle2 = triangulationTwo.Triangles[0];
 
@@ -42,6 +43,7 @@ std::vector<Triangulation> MeshJoiner::performTransformations(std::vector<Triang
     RealPoint firstRealPoint3 = triangulationOne.getRealPoint(firstTriangleP3);
     Geometry::RealPoint avgFirstTriangle = triangle1.triangleCentroid(firstRealPoint1, firstRealPoint2, firstRealPoint3);
 
+    // Align the first triangulation's to the origin and normalize its orientation
     triangulationOne = transformer.translation(triangulationOne, -(avgFirstTriangle.X()), -(avgFirstTriangle.Y()), -(avgFirstTriangle.Z()));
     triangulationOne = transformer.rotationX(triangulationOne, -angle1);
 
@@ -55,15 +57,18 @@ std::vector<Triangulation> MeshJoiner::performTransformations(std::vector<Triang
     RealPoint secondRealPoint3 = triangulationTwo.getRealPoint(secondTriangleP3);
     Geometry::RealPoint avgSecondTriangle = triangle2.triangleCentroid(secondRealPoint1, secondRealPoint2, secondRealPoint3);
 
-
+    // Align the Second triangulation's to the origin and normalize its orientation
     triangulationTwo = transformer.translation(triangulationTwo, -(avgSecondTriangle.X()), -(avgSecondTriangle.Y()), -(avgSecondTriangle.Z()));
     triangulationTwo = transformer.rotationX(triangulationTwo, -angle2);
 
+    // Restore and align both triangulations' orientations.
     triangulationOne = transformer.rotationX(triangulationOne, angle1);
     triangulationTwo = transformer.rotationX(triangulationTwo, angle1);
 
+    // Translate both triangulations back according to the first triangle's centroid.
     triangulationOne = transformer.translation(triangulationOne, (avgFirstTriangle.X()), (avgFirstTriangle.Y()), (avgFirstTriangle.Z()));
     triangulationTwo = transformer.translation(triangulationTwo, (avgFirstTriangle.X()), (avgFirstTriangle.Y()), (avgFirstTriangle.Z()));
+
     std::vector<Triangulation> resultTriangulation;
     resultTriangulation.push_back(triangulationOne);
     resultTriangulation.push_back(triangulationTwo);
