@@ -6,7 +6,6 @@
 #include "OBJReader.h"
 #include "OBJWriter.h"
 #include "STLWriter.h"
-#include "DataWriter.h"
 #include "MeshJoiner.h"
 
 

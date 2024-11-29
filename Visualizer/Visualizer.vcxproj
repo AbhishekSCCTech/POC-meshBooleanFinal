@@ -36,7 +36,7 @@
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
-    <QtInstall>2017</QtInstall>
+    <QtInstall>5.12.12_msvc2017_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
@@ -67,6 +67,22 @@
       <AdditionalDependencies>Geometry.lib;Transformation.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)Geometry\headers;$(SolutionDir)Transformation\headers;$(ProjectDir)headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile />
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Geometry.lib;Transformation.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -92,7 +108,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\DataWriter.cpp" />
     <ClCompile Include="src\GraphicsSynchronizer.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MeshJoiner.cpp" />
@@ -111,7 +126,6 @@
     <QtMoc Include="headers\Visualizer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="headers\DataWriter.h" />
     <ClInclude Include="headers\MeshJoiner.h" />
     <ClInclude Include="headers\OBJReader.h" />
     <ClInclude Include="headers\OBJWriter.h" />

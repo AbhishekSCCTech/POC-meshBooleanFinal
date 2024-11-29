@@ -35,7 +35,7 @@ Triangulation Transformations::Transformation::scaling(Triangulation& triangulat
             double zm = triangulation.UniqueNumbers[pt.Z()];
             nmatrix = matrix.multiply(xm, ym, zm);
             int pts[3];
-            for (int i = 0; i < 3; i++)
+            for (size_t i = 0; i < 3; i++)
             {
                 auto pair = uniqueMap.find(nmatrix[i]);
                 if (pair == uniqueMap.end())
@@ -82,7 +82,7 @@ Triangulation Transformations::Transformation::translation(Triangulation& triang
             double zm = triangulation.UniqueNumbers[pt.Z()];
             nmatrix = matrix.multiply(xm, ym,zm);
             int pts[3];
-            for (int i = 0; i < 3; i++)
+            for (size_t i = 0; i < 3; i++)
             {
                 auto pair = uniqueMap.find(nmatrix[i]);
                 if (pair == uniqueMap.end())
@@ -130,7 +130,7 @@ Triangulation Transformations::Transformation::rotationX(Triangulation& triangul
             double zm = triangulation.UniqueNumbers[pt.Z()];
             nmatrix = matrix.multiply(xm, ym, zm);
             int pts[3];
-            for (int i = 0; i < 3; i++)
+            for (size_t i = 0; i < 3; i++)
             {
                 auto pair = uniqueMap.find(nmatrix[i]);
                 if (pair == uniqueMap.end())
